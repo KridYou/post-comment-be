@@ -1,0 +1,41 @@
+# Node.js
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Build output for NestJS
+dist/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+.pnp/
+.pnp.js
+
+# TypeScript
+*.tsbuildinfo
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Environment variables
+.env
+.env.*.local

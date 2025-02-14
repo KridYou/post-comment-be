@@ -6,6 +6,7 @@ import { User } from './auth/entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostModule } from './post/post.module';
 import { Comment, Post } from './post/entities/post.entity';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -18,6 +19,10 @@ import { Comment, Post } from './post/entities/post.entity';
       database: process.env.DB_NAME || 'data-wow',
       entities: [User, Post, Comment],
       synchronize: true,
+    }),
+    JwtModule.register({
+      secret: 'data-wow-secret', // Replace with your actual secret key
+      signOptions: { expiresIn: '3600' }, // Optional: Set token expiration
     }),
     AuthModule,
     PostModule,

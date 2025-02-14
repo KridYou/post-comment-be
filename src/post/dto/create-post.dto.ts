@@ -6,7 +6,7 @@ export class CreatePostDto {
 
 // create-comment.dto.ts
 export class CreateCommentDto {
+  postId: string;
   content: string;
   created_by: string;
-  postId: string;
 }

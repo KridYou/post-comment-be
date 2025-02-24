@@ -7,22 +7,12 @@ import {
   Delete,
   Req,
   UseGuards,
-<<<<<<< HEAD
 } from '@nestjs/common';
 import { PostsService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { AuthenticatedRequest } from './interface/authenticate-request.interface';
-=======
-  UnauthorizedException,
-} from '@nestjs/common';
-import { PostsService } from './post.service';
-import { CreateCommentDto, CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
->>>>>>> 68debe8f3a1852346651a36a25695df151e6c0c3
 
 @ApiTags('Post')
 @Controller('posts')

@@ -14,6 +14,12 @@ export class Post {
   id: string;
 
   @Column()
+  topic: string;
+
+  @Column()
+  category: string;
+
+  @Column()
   content: string;
 
   @OneToMany(() => Comment, (comment) => comment.post, { cascade: true })

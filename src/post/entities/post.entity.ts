@@ -22,7 +22,10 @@ export class Post {
   @Column()
   created_by: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+  })
   created_at: Date;
 
   @UpdateDateColumn()

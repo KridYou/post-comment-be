@@ -9,7 +9,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 export class PostsService {
   constructor(
     @InjectRepository(Post)
-    private postsRepository: Repository<Post>,
+    private readonly postsRepository: Repository<Post>,
   ) {}
 
   create(createPostDto: CreatePostDto): Promise<Post> {

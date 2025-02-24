@@ -1,19 +1,18 @@
-// posts.controller.ts
 import {
   Controller,
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
-  Request,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import { PostsService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { AuthenticatedRequest } from './interface/authenticate-request.interface';
 
 @ApiTags('Post')
 @Controller('posts')
@@ -22,9 +21,12 @@ export class PostsController {
 
   @Post()
   @ApiOperation({ summary: 'Create a new post' })
+  @UseGuards(JwtAuthGuard)
   @ApiResponse({ status: 201, description: 'Create post successfully' })
-  create(@Req() req: Request, @Body() createPostDto: CreatePostDto) {
-    const userId = req['userId'];
+  create(@Req() req: AuthenticatedRequest, @Body() createPostDto: CreatePostDto) {
+    const userData = req.user;
+    const userId = userData.userId;
+    // const userId = req['userId'];
     console.log('userId', userId);
     createPostDto.created_by = userId;
     return this.postsService.create(createPostDto);
@@ -34,16 +36,6 @@ export class PostsController {
   findAll() {
     return this.postsService.findAll();
   }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.postsService.findOne(id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-  //   return this.postsService.update(id, updatePostDto);
-  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

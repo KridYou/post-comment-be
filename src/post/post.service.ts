@@ -12,9 +12,12 @@ export class PostsService {
     @InjectRepository(Post)
     private readonly postsRepository: Repository<Post>,
     private readonly usersService: UsersService,
+
+    @InjectRepository(Comment)
+    private commentsRepository: Repository<Comment>,
   ) {}
 
-  create(createPostDto: CreatePostDto): Promise<Post> {
+  createPost(createPostDto: CreatePostDto): Promise<Post> {
     const post = this.postsRepository.create(createPostDto);
     return this.postsRepository.save(post);
   }

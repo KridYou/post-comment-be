@@ -43,6 +43,9 @@ export class Comment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column('uuid')
+  postId: string;
+
   @Column()
   content: string;
 
